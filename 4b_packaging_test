@@ -1,0 +1,19 @@
+Python 3.13 - validación del paquete EmotionDetection
+
+Prueba de formato con respuesta de Watson simulada (no es una respuesta del servicio):
+from unittest.mock import Mock, patch
+from EmotionDetection.emotion_detection import emotion_detector
+
+scores = {"anger": 0.72, "disgust": 0.05, "fear": 0.08, "joy": 0.03, "sadness": 0.12}
+response = Mock()
+response.json.return_value = {"emotionPredictions": [{"emotion": scores}]}
+with patch("EmotionDetection.emotion_detection.requests.post", return_value=response):
+    print(emotion_detector("I am very angry"))
+
+Salida:
+{'anger': 0.72, 'disgust': 0.05, 'fear': 0.08, 'joy': 0.03, 'sadness': 0.12, 'dominant_emotion': 'anger'}
+EmotionDetection package import: OK
+
+La ejecución real contra Watson con el comando solicitado terminó en requests.exceptions.ConnectTimeout
+al conectar con sn-watson-emotion.labs.skills.network:443. Por tanto, las puntuaciones anteriores
+solo validan el paquete y el formato; no representan una predicción real.
