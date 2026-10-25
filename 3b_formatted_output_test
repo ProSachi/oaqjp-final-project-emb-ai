@@ -1,0 +1,4 @@
+Python 3.13 - prueba de formato con respuesta simulada
+Texto de prueba: I am really mad about this
+
+{'anger': 0.8, 'disgust': 0.05, 'fear': 0.05, 'joy': 0.02, 'sadness': 0.08, 'dominant_emotion': 'anger'}
